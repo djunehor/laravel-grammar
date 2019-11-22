@@ -2,6 +2,8 @@
 
 namespace Djunehor\Grammar;
 
+use Illuminate\Support\Collection;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 
 class GrammarServiceProvider extends ServiceProvider
@@ -9,12 +11,30 @@ class GrammarServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application services.
      *
+     * @param Filesystem $filesystem
      * @return void
      */
-    public function boot()
+    public function boot(Filesystem $filesystem)
     {
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-        $this->publishFiles();
+        $publishTag = 'laravel-grammar';
+        if (app() instanceof \Illuminate\Foundation\Application)  {
+            $this->publishes([
+                __DIR__.'/config/laravel-grammar.php' => config_path('laravel-grammar.php'),
+            ], $publishTag);
+
+            $this->publishes([
+                __DIR__.'/database/migrations/2019_11_22_145649_create_words_table.php.stub' => $this->getMigrationFileName($filesystem),
+            ], $publishTag);
+
+            $this->publishes([
+                __DIR__ . "/database/seeds/LaravelGrammarSeeder.php.stub" => database_path('seeds/LaravelGrammarSeeder.php')],
+                $publishTag);
+            $this->publishes([
+                __DIR__ . "/database/seeds/entries.csv.zip" => database_path('seeds/entries.csv.zip')],
+                $publishTag);
+
+        }
+
     }
 
     /**
@@ -31,19 +51,6 @@ class GrammarServiceProvider extends ServiceProvider
         });
     }
 
-    private function publishFiles()
-    {
-        $publishTag = 'LaravelGrammar';
-
-        $this->publishes([
-            __DIR__ . '/config/laravel-grammar.php' => config_path('laravel-grammar.php'),
-        ], 'config');
-        $this->publishes([
-            __DIR__ . "/database/migrations/2019_11_22_145649_create_words_table.php" => database_path('migrations/' . date("Y_m_d_His", time()) . '_create_words_table.php'),
-        ], $publishTag);
-        $this->publishes([__DIR__ . "/database/seeds/" => database_path('seeds')], $publishTag);
-    }
-
     /**
      * Get the services provided by the provider
      * @return array
@@ -51,5 +58,22 @@ class GrammarServiceProvider extends ServiceProvider
     public function provides() : array
     {
         return ['laravel-grammar'];
+    }
+
+    /**
+     * Returns existing migration file if found, else uses the current timestamp.
+     *
+     * @param Filesystem $filesystem
+     * @return string
+     */
+    protected function getMigrationFileName(Filesystem $filesystem): string
+    {
+        $timestamp = date('Y_m_d_His');
+
+        return Collection::make($this->app->databasePath().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR)
+            ->flatMap(function ($path) use ($filesystem) {
+                return $filesystem->glob($path.'*_create_permission_tables.php');
+            })->push($this->app->databasePath()."/migrations/{$timestamp}_create_permission_tables.php")
+            ->first();
     }
 }
