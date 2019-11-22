@@ -72,8 +72,8 @@ class GrammarServiceProvider extends ServiceProvider
 
         return Collection::make($this->app->databasePath().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR)
             ->flatMap(function ($path) use ($filesystem) {
-                return $filesystem->glob($path.'*_create_permission_tables.php');
-            })->push($this->app->databasePath()."/migrations/{$timestamp}_create_permission_tables.php")
+                return $filesystem->glob($path.'*_create_laravel_grammars_tables.php');
+            })->push($this->app->databasePath()."/migrations/{$timestamp}_create_laravel_grammars_tables.php")
             ->first();
     }
 }
