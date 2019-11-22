@@ -2,8 +2,6 @@
 
 namespace Djunehor\Grammar;
 
-use Djunehor\Grammar\Models\Entry;
-
 class Word
 {
     private $string;
@@ -34,14 +32,15 @@ class Word
 
     public function getWordPartOfSpeech($string)
     {
-        $this->string = ucfirst($string);
-        $row = \DB::table($this->table)->where('name', $this->string)->first();
-        return $row ? $this->parts($row->wordtype) : [];
+        $this->string = $string;
+        $row = \DB::table($this->table)->where('word', ucfirst($this->string))->first();
+        return $row ? $this->parts($row->word_type) : [];
     }
 
     public function parts($string)
     {
         $array = explode(' ', str_replace(",", "", $string));
+
         $parts = [];
 
         foreach ($array as $item) {
@@ -55,7 +54,7 @@ class Word
 
     public function checkIs($part)
     {
-        return in_array($part, $this->getWordPartOfSpeech());
+        return in_array($part, $this->getWordPartOfSpeech($this->string));
     }
 
     public function isNoun()

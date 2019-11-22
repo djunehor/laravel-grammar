@@ -43,4 +43,13 @@ class GrammarServiceProvider extends ServiceProvider
         ], $publishTag);
         $this->publishes([__DIR__ . "/database/seeds/" => database_path('seeds')], $publishTag);
     }
+
+    /**
+     * Get the services provided by the provider
+     * @return array
+     */
+    public function provides() : array
+    {
+        return ['laravel-grammar'];
+    }
 }
