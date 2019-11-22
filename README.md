@@ -51,8 +51,8 @@ Run:
 This will move the migration file, seeder file and config file to your app. You can change the entries table name in config/laravel-grammar.php
 
 ### Step 3 - Publishing files
-- Run`php artisan migrate` to create the entries table.
-- Run `php artisan db:seed --class=EntriesSeeder` to add words to the table
+- Run`php artisan migrate` to create the table.
+- Run `php artisan db:seed --class=LaravelGrammarSeeder` to seed table
 
 
 ## Usage
