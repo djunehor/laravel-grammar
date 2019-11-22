@@ -83,6 +83,11 @@ $isNoun = $grammar->isNoun();
 // true
 ```
 
+### Using Facade
+In order to use the Grammar facade:
+- First add `    'Grammar' => GrammarFacade::class,` to aliases in `config/app.php`
+- Then use like `\Grammar::getPartsOfSpeech();`
+
 ## Contributing
 - Fork this project
 - Clone to your repo
