@@ -1,0 +1,37 @@
+{
+    "name": "djunehor/laravel-grammar",
+    "description": "deduce part of speech of a word",
+    "keywords": ["english","part of speech","laravel","php", "grammar", "djunehor"],
+	"type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zacchaeus Bolaji",
+            "email": "djunehor@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.0",
+        "illuminate/config": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+        "illuminate/database": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+        "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+      "ext-mysqli": "*",
+        "ext-mysql_xdevapi": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Djunehor\\Grammar\\": "src"
+        },
+        "files": [
+            "src/app/Helpers/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Djunehor\\Grammar\\GrammarServiceProvider"
+            ]
+        }
+    }
+}
