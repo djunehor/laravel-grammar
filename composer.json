@@ -19,17 +19,17 @@
   ],
   "minimum-stability": "dev",
     "require": {
-        "php": "^7.2",
+        "php": "^7.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "orchestra/testbench": "3.8.*|4.*",
+        "phpunit/phpunit": "^8.0",
         "illuminate/contracts": "^5.8.15|^6.0",
         "illuminate/filesystem": "^5.8.15|^6.0",
         "illuminate/support": "^5.8.15|^6.0",
       "illuminate/database": "^5.8.15|^6.0",
       "laravel/framework": "^5.4"
-    },
-    "require-dev": {
-        "mockery/mockery": "^1.0",
-        "orchestra/testbench": "3.8.*|4.*",
-        "phpunit/phpunit": "^8.0"
 
     },
   "autoload": {
