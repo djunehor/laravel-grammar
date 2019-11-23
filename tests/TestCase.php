@@ -3,8 +3,6 @@
 namespace Djunehor\Grammar\Test;
 
 use Djunehor\Grammar\GrammarServiceProvider;
-use Djunehor\Grammar\Word;
-use Djunehor\Grammar\CreateWordsTable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
