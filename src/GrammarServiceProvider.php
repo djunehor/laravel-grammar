@@ -17,7 +17,7 @@ class GrammarServiceProvider extends ServiceProvider
     public function boot(Filesystem $filesystem)
     {
         $publishTag = 'laravel-grammar';
-        if (app() instanceof \Illuminate\Foundation\Application)  {
+        if (app() instanceof \Illuminate\Foundation\Application) {
             $this->publishes([
                 __DIR__.'/config/laravel-grammar.php' => config_path('laravel-grammar.php'),
             ], $publishTag);
@@ -27,10 +27,10 @@ class GrammarServiceProvider extends ServiceProvider
             ], $publishTag);
 
             $this->publishes([
-                __DIR__ . "/database/seeds/LaravelGrammarSeeder.php.stub" => database_path('seeds/LaravelGrammarSeeder.php')],
+                __DIR__."/database/seeds/LaravelGrammarSeeder.php.stub" => database_path('seeds/LaravelGrammarSeeder.php')],
                 $publishTag);
             $this->publishes([
-                __DIR__ . "/database/seeds/entries.csv.zip" => database_path('seeds/entries.csv.zip')],
+                __DIR__."/database/seeds/entries.csv.zip" => database_path('seeds/entries.csv.zip')],
                 $publishTag);
 
         }
@@ -44,7 +44,7 @@ class GrammarServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('laravel-grammar', function () {
+        $this->app->bind('laravel-grammar', function() {
 
             return new Word();
 
@@ -71,7 +71,7 @@ class GrammarServiceProvider extends ServiceProvider
         $timestamp = date('Y_m_d_His');
 
         return Collection::make($this->app->databasePath().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR)
-            ->flatMap(function ($path) use ($filesystem) {
+            ->flatMap(function($path) use ($filesystem) {
                 return $filesystem->glob($path.'*_create_laravel_grammar_table.php');
             })->push($this->app->databasePath()."/migrations/{$timestamp}_create_laravel_grammar_table.php")
             ->first();

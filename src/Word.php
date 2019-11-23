@@ -21,7 +21,9 @@ class Word
 
     public function __construct($string = null)
     {
-        if ($string) $this->string = $string;
+        if ($string) {
+            $this->string = $string;
+        }
         $this->table = config('laravel-grammar.table', 'entries');
     }
 
