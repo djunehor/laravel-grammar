@@ -41,3 +41,18 @@ jobs:
 
       # run tests with phpunit or codecept
       - run: ./vendor/bin/phpunit --coverage-clover=coverage.clover
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+          # download test reporter as a static binary
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
+          name: Run tests
+          command: |
+            sudo docker-php-ext-enable xdebug
+          # notify Code Climate of a pending test report using `before-build`
+            ./cc-test-reporter before-build
+            sudo vendor/bin/phpunit --coverage-clover clover.xml
+          # upload test report to Code Climate using `after-build`
+            ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
