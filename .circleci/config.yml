@@ -40,4 +40,4 @@ jobs:
             - ./vendor
 
       # run tests with phpunit or codecept
-      - run: composer test
+      - run: ./vendor/bin/phpunit --coverage-clover=coverage.clover

@@ -2,4 +2,4 @@
 composer.lock
 vendor
 .phpunit.result.cache
-tmp/*
+coverage.clover
