@@ -2,12 +2,12 @@
 
 namespace Djunehor\Grammar\Test;
 
+use Djunehor\Grammar\GrammarServiceProvider;
+use Djunehor\Grammar\Word;
 use Mockery as m;
-use Djunehor\Grammar\{Word, GrammarServiceProvider};
 
 class GrammarServiceProviderTest extends TestCase
 {
-
     /**
      * @var MockInterface
      */
@@ -26,7 +26,7 @@ class GrammarServiceProviderTest extends TestCase
     }
 
     /**
-     * Test that it registers the correct service name with Identity
+     * Test that it registers the correct service name with Identity.
      */
     public function testRegister()
     {
@@ -41,7 +41,7 @@ class GrammarServiceProviderTest extends TestCase
     }
 
     /**
-     * Test that it provides the correct service name
+     * Test that it provides the correct service name.
      */
     public function testProvides()
     {

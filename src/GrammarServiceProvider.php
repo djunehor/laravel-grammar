@@ -2,8 +2,8 @@
 
 namespace Djunehor\Grammar;
 
-use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 
 class GrammarServiceProvider extends ServiceProvider
@@ -17,7 +17,7 @@ class GrammarServiceProvider extends ServiceProvider
     public function boot(Filesystem $filesystem)
     {
         $publishTag = 'laravel-grammar';
-        if (app() instanceof \Illuminate\Foundation\Application)  {
+        if (app() instanceof \Illuminate\Foundation\Application) {
             $this->publishes([
                 __DIR__.'/config/laravel-grammar.php' => config_path('laravel-grammar.php'),
             ], $publishTag);
@@ -27,14 +27,12 @@ class GrammarServiceProvider extends ServiceProvider
             ], $publishTag);
 
             $this->publishes([
-                __DIR__ . "/database/seeds/LaravelGrammarSeeder.php.stub" => database_path('seeds/LaravelGrammarSeeder.php')],
+                __DIR__.'/database/seeds/LaravelGrammarSeeder.php.stub' => database_path('seeds/LaravelGrammarSeeder.php'), ],
                 $publishTag);
             $this->publishes([
-                __DIR__ . "/database/seeds/entries.csv.zip" => database_path('seeds/entries.csv.zip')],
+                __DIR__.'/database/seeds/entries.csv.zip' => database_path('seeds/entries.csv.zip'), ],
                 $publishTag);
-
         }
-
     }
 
     /**
@@ -45,14 +43,12 @@ class GrammarServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('laravel-grammar', function () {
-
             return new Word();
-
         });
     }
 
     /**
-     * Get the services provided by the provider
+     * Get the services provided by the provider.
      * @return array
      */
     public function provides() : array
