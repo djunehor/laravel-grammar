@@ -42,7 +42,7 @@
     }
   },
   "scripts": {
-    "test": "vendor/bin/phpunit  --coverage-html tmp tests"
+    "test": "vendor/bin/phpunit tests"
   },
   "extra": {
     "laravel": {
