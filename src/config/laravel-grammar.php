@@ -1,4 +1,5 @@
 <?php
+
 return [
-    'table' => 'samuel'
+    'table' => 'samuel',
 ];

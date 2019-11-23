@@ -3,10 +3,10 @@
 namespace Djunehor\Grammar\Test;
 
 use Djunehor\Grammar\GrammarServiceProvider;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Concerns\CreatesApplication;
 
 abstract class TestCase extends BaseTestCase
@@ -64,7 +64,7 @@ abstract class TestCase extends BaseTestCase
 
         DB::table(config('laravel-grammar.table'))->insert([
             ['word' => 'Boy', 'word_type' => 'n.'],
-            ['word' => 'Look', 'word_type' => 'a.']
+            ['word' => 'Look', 'word_type' => 'a.'],
         ]);
     }
 }

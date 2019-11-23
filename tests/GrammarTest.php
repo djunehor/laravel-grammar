@@ -6,16 +6,15 @@ use Djunehor\Grammar\Word;
 
 class GrammarTest extends TestCase
 {
-
     /**
-     * Identify Object
+     * Identify Object.
      * @var Word
      */
     protected $grammar;
 
     protected $wordPart = [
       0 => ['word' => 'Boy', 'part' => 'Noun'],
-       1 => ['word' => 'Look', 'part' => 'Adjective']
+       1 => ['word' => 'Look', 'part' => 'Adjective'],
     ];
 
     public function setUp(): void
@@ -25,8 +24,7 @@ class GrammarTest extends TestCase
     }
 
     /**
-     * Test if Identify can be constructed
-     *
+     * Test if Identify can be constructed.
      */
     public function testGrammarCanBeConstructed()
     {
@@ -34,8 +32,7 @@ class GrammarTest extends TestCase
     }
 
     /**
-     * Test if Os is constructed on Identify Object created
-     *
+     * Test if Os is constructed on Identify Object created.
      */
     public function testPartsOfSpeechCanBeRetrieved()
     {
@@ -45,8 +42,7 @@ class GrammarTest extends TestCase
     }
 
     /**
-     * Test if Device is constructed on Identify Object created
-     *
+     * Test if Device is constructed on Identify Object created.
      */
     public function testCanGetWordPartOfSpeech()
     {
@@ -54,19 +50,17 @@ class GrammarTest extends TestCase
     }
 
     /**
-     * Test if Device is constructed on Identify Object created
-     *
+     * Test if Device is constructed on Identify Object created.
      */
     public function testCorrectWordPartOfSpeech()
     {
-        $wordPart = $this->wordPart[rand(0,1)];
-            $receivedPart = $this->grammar->getWordPartOfSpeech($wordPart['word']);
-            $this->assertTrue(in_array($wordPart['part'], $receivedPart));
+        $wordPart = $this->wordPart[rand(0, 1)];
+        $receivedPart = $this->grammar->getWordPartOfSpeech($wordPart['word']);
+        $this->assertTrue(in_array($wordPart['part'], $receivedPart));
     }
 
     /**
-     * Test if Device is constructed on Identify Object created
-     *
+     * Test if Device is constructed on Identify Object created.
      */
     public function testCheckPartOfSpeech()
     {
@@ -77,8 +71,7 @@ class GrammarTest extends TestCase
     }
 
     /**
-     * Test if Device is constructed on Identify Object created
-     *
+     * Test if Device is constructed on Identify Object created.
      */
     public function testIsAdjective()
     {
@@ -87,6 +80,4 @@ class GrammarTest extends TestCase
 
         $this->assertTrue($this->grammar->isAdjective());
     }
-
 }
-
