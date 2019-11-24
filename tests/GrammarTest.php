@@ -6,16 +6,15 @@ use Djunehor\Grammar\Word;
 
 class GrammarTest extends TestCase
 {
-
     /**
-     * Grammar Object
+     * Grammar Object.
      * @var Word
      */
     protected $grammar;
 
     protected $wordPart = [
       0 => ['word' => 'Boy', 'part' => 'Noun'],
-       1 => ['word' => 'Look', 'part' => 'Adjective']
+       1 => ['word' => 'Look', 'part' => 'Adjective'],
     ];
 
     public function setUp(): void
@@ -55,9 +54,9 @@ class GrammarTest extends TestCase
 
     public function testCorrectWordPartOfSpeech()
     {
-        $wordPart = $this->wordPart[rand(0,1)];
-            $receivedPart = $this->grammar->getWordPartOfSpeech($wordPart['word']);
-            $this->assertTrue(in_array($wordPart['part'], $receivedPart));
+        $wordPart = $this->wordPart[rand(0, 1)];
+        $receivedPart = $this->grammar->getWordPartOfSpeech($wordPart['word']);
+        $this->assertTrue(in_array($wordPart['part'], $receivedPart));
     }
 
     public function testCheckPartOfSpeech()
@@ -75,6 +74,4 @@ class GrammarTest extends TestCase
 
         $this->assertTrue($this->grammar->isAdjective());
     }
-
 }
-
