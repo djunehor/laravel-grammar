@@ -19,7 +19,7 @@
   ],
   "minimum-stability": "dev",
     "require": {
-        "php": "~7.0|~7.2"
+        "php": "~7.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.0",
@@ -34,7 +34,10 @@
   "autoload": {
     "psr-4": {
       "Djunehor\\Grammar\\": "src/"
-    }
+    },
+      "files": [
+          "src/Helpers/helpers.php"
+      ]
   },
   "autoload-dev": {
     "psr-4": {

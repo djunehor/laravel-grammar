@@ -13,7 +13,7 @@ class LaravelGrammarSeeder extends Seeder
      */
     public function run()
     {
-        $filePath = __DIR__ . '/entries.csv';
+        $filePath = database_path('seeds/entries.csv');
         $table = config('laravel-grammar.table', 'entries');
         if (!File::exists($filePath) && !$this->unzip()) {
             echo "Failed to unzip csv. Check if [entries.csv.zip] exists in /database/seeds\n";
@@ -22,12 +22,25 @@ class LaravelGrammarSeeder extends Seeder
         $rows = file($filePath);
         DB::table($table)->truncate();
 
+        $i = 0;
+        $insertArray = [];
         foreach ($rows as $row) {
             $array = explode(";", $row);
-            DB::table($table)->insert([
+                $datum = [
                 'word' => str_replace('"', '', $array[0]),
-                'word_type' => str_replace('"', '', $array[1])
-            ]);
+                'word_type' => json_encode($this->parts(str_replace('"', '', $array[1])))
+                    ];
+
+                $insertArray[] = $datum;
+                $i++;
+
+                // we want to insert 10000 rows per time for optimization
+                if($i == 10000) {
+                    DB::table($table)->insert($insertArray);
+                    $i = 0;
+                    $insertArray = [];
+                }
+
         }
 
         echo "\e[0;31;42mYou can delete [entries.csv.zip] from /database/seeds\e[0m\n";
@@ -36,7 +49,7 @@ class LaravelGrammarSeeder extends Seeder
     public function unzip()
     {
         $zip = new ZipArchive;
-        $res = $zip->open(__DIR__ . '/entries.csv.zip');
+        $res = $zip->open(database_path('seeds/entries.csv.zip'));
         if ($res === TRUE) {
             $zip->extractTo(__DIR__);
             $zip->close();
@@ -44,5 +57,22 @@ class LaravelGrammarSeeder extends Seeder
         } else {
             return false;
         }
+    }
+
+    private function parts($string)
+    {
+        $array = explode(' ', str_replace(",", "", $string));
+
+        $parts = [];
+
+        $partsOfSpeech = parts_of_speech();
+
+        foreach ($array as $item) {
+            if (array_key_exists($item, $partsOfSpeech)) {
+                $parts[] = $partsOfSpeech[$item];
+            }
+        }
+
+        return $parts;
     }
 }

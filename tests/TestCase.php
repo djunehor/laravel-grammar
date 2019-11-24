@@ -63,8 +63,8 @@ abstract class TestCase extends BaseTestCase
         });
 
         DB::table(config('laravel-grammar.table'))->insert([
-            ['word' => 'Boy', 'word_type' => 'n.'],
-            ['word' => 'Look', 'word_type' => 'a.'],
+            ['word' => 'Boy', 'word_type' => json_encode(['Noun'])],
+            ['word' => 'Look', 'word_type' => json_encode(['Adjective'])],
         ]);
     }
 }

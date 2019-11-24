@@ -21,9 +21,7 @@ class Word
 
     public function __construct($string = null)
     {
-        if ($string) {
-            $this->string = $string;
-        }
+        if ($string) $this->string = $string;
         $this->table = config('laravel-grammar.table', 'entries');
     }
 
@@ -36,23 +34,7 @@ class Word
     {
         $this->string = $string;
         $row = \DB::table($this->table)->where('word', ucfirst($this->string))->first();
-
-        return $row ? $this->parts($row->word_type) : [];
-    }
-
-    public function parts($string)
-    {
-        $array = explode(' ', str_replace(',', '', $string));
-
-        $parts = [];
-
-        foreach ($array as $item) {
-            if (array_key_exists($item, $this->partsOfSpeech)) {
-                $parts[] = $this->partsOfSpeech[$item];
-            }
-        }
-
-        return $parts;
+        return $row ? json_decode($row->word_type, true) : [];
     }
 
     public function checkIs($part)
@@ -99,4 +81,6 @@ class Word
     {
         return $this->checkIs('Verb');
     }
+
 }
+
