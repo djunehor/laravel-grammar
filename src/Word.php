@@ -21,7 +21,9 @@ class Word
 
     public function __construct($string = null)
     {
-        if ($string) $this->string = $string;
+        if ($string) {
+            $this->string = $string;
+        }
         $this->table = config('laravel-grammar.table', 'entries');
     }
 
@@ -34,6 +36,7 @@ class Word
     {
         $this->string = $string;
         $row = \DB::table($this->table)->where('word', ucfirst($this->string))->first();
+
         return $row ? json_decode($row->word_type, true) : [];
     }
 
@@ -81,6 +84,4 @@ class Word
     {
         return $this->checkIs('Verb');
     }
-
 }
-
