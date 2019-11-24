@@ -80,4 +80,60 @@ class GrammarTest extends TestCase
 
         $this->assertTrue($this->grammar->isAdjective());
     }
+
+    public function testIsPreposition()
+    {
+        $adjWord = 'Look';
+        $this->grammar->getWordPartOfSpeech($adjWord);
+
+        $this->assertFalse($this->grammar->isPreposition());
+    }
+
+    public function testIsConjunction()
+    {
+        $adjWord = 'Look';
+        $this->grammar->getWordPartOfSpeech($adjWord);
+
+        $this->assertFalse($this->grammar->isConjunction());
+    }
+
+    public function testIsNoun()
+    {
+        $adjWord = 'Look';
+        $this->grammar->getWordPartOfSpeech($adjWord);
+
+        $this->assertFalse($this->grammar->isNoun());
+    }
+
+    public function testIsPronoun()
+    {
+        $adjWord = 'Look';
+        $this->grammar->getWordPartOfSpeech($adjWord);
+
+        $this->assertFalse($this->grammar->isPronoun());
+    }
+
+    public function testIsAdverb()
+    {
+        $adjWord = 'Look';
+        $this->grammar->getWordPartOfSpeech($adjWord);
+
+        $this->assertFalse($this->grammar->isAdverb());
+    }
+
+    public function testIsInterjection()
+    {
+        $adjWord = 'Look';
+        $this->grammar->getWordPartOfSpeech($adjWord);
+
+        $this->assertFalse($this->grammar->isInterjection());
+    }
+
+    public function testIsVerb()
+    {
+        $adjWord = 'Look';
+        $this->grammar->getWordPartOfSpeech($adjWord);
+
+        $this->assertFalse($this->grammar->isVerb());
+    }
 }
