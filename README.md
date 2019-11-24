@@ -7,6 +7,7 @@
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/djunehor/laravel-grammar/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9d6be7b057103cb14410/maintainability)](https://codeclimate.com/github/djunehor/laravel-grammar/maintainability)
 [![StyleCI](https://github.styleci.io/repos/223423445/shield?branch=master)](https://github.styleci.io/repos/223423445)
+[![Code Coverage](https://scrutinizer-ci.com/g/djunehor/laravel-grammar/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/djunehor/laravel-grammar/?branch=master)
 
 Laravel Grammar allows you detect the part of speech of a word. It returns an array of parts of speech a word belong to.
 
