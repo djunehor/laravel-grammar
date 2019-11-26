@@ -53,7 +53,7 @@
         "Djunehor\\Grammar\\GrammarServiceProvider"
       ],
       "aliases": {
-        "Identify": "Djunehor\\Grammar\\Facades\\GrammarFacade"
+        "Grammar": "Djunehor\\Grammar\\Facades\\GrammarFacade"
       }
     }
   }
