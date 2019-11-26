@@ -7,7 +7,9 @@
     "laravel",
     "php",
     "grammar",
-    "djunehor"
+    "djunehor",
+    "laravel",
+    "laravel-package"
   ],
   "type": "library",
   "license": "MIT",
