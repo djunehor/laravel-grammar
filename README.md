@@ -66,7 +66,7 @@ This will move the migration file, seeder file and config file to your app. You 
 
 ## Usage
 ```php
-use Djunehor\Grammar\Word;`
+use Djunehor\Grammar\Word;
 
 $grammar = new Word();
 ```
